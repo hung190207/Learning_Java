@@ -1,6 +1,6 @@
 package lc.p58_length_of_last_word;
 
-//https://leetcode.com/problems/length-of-last-word/
+// https://leetcode.com/problems/length-of-last-word/
 public class Solution {
     public int lengthOfLastWord(String s) {
         int count = 0;

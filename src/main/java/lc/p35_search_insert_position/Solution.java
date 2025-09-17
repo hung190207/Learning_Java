@@ -1,6 +1,6 @@
 package lc.p35_search_insert_position;
 
-//https://leetcode.com/problems/search-insert-position/
+// https://leetcode.com/problems/search-insert-position/
 public class Solution {
     public int searchInsert(int[] nums, int target) {
         int low = 0;

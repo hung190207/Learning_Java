@@ -1,6 +1,6 @@
 package lc.p66_plus_one;
 
-//https://leetcode.com/problems/plus-one/
+// https://leetcode.com/problems/plus-one/
 public class Solution {
     public int[] plusOne(int[] digits) {
         if (digits == null || digits.length == 0) {

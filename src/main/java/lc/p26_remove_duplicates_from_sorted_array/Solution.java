@@ -2,7 +2,7 @@ package lc.p26_remove_duplicates_from_sorted_array;
 
 import java.util.Arrays;
 
-//https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 public class Solution {
     public int removeDuplicates(int[] nums) {
         int result = 0;

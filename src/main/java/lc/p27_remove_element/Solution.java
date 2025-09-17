@@ -1,6 +1,6 @@
 package lc.p27_remove_element;
 
-//https://leetcode.com/problems/remove-element/
+// https://leetcode.com/problems/remove-element/
 public class Solution {
     public int removeElement(int[] nums, int val) {
         int i = 0;

@@ -1,6 +1,6 @@
 package lc.p9_palindrome;
 
-//https://leetcode.com/problems/palindrome-number/
+// https://leetcode.com/problems/palindrome-number/
 class Solution {
     public boolean isPalindrome(int x) {
         if (x < 0) {

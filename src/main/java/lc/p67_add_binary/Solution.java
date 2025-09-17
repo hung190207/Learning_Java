@@ -1,6 +1,6 @@
 package lc.p67_add_binary;
 
-//https://leetcode.com/problems/add-binary/description/
+// https://leetcode.com/problems/add-binary/description/
 public class Solution {
     public String addBinary(String a, String b) {
         StringBuilder result = new StringBuilder();
