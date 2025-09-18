@@ -8,7 +8,7 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
-    // Convert ListNode into array.
+    // Convert array into ListNode.
     public static ListNode fromArray(int[] arr) {
         if (arr == null || arr.length == 0)
             return null;
@@ -20,7 +20,7 @@ public class ListNode {
         }
         return head;
     }
-    // Convert ListNode to Integer Array
+    // Convert Int array into ListNode
     public static ListNode fromIntegerArray(Integer[] array) {
         if (array == null || array.length == 0) {
             return null;
