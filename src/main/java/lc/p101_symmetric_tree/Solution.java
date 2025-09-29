@@ -5,7 +5,6 @@ import lc.util.TreeNode;
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
-        if (root.left.val != root.right.val) return false;
         return isSame(root.left, root.right);
     }
 
