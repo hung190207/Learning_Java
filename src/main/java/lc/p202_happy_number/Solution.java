@@ -1,5 +1,6 @@
 package lc.p202_happy_number;
 
+// https://leetcode.com/problems/happy-number/
 public class Solution {
     public boolean isHappy(int n) {
         if (n == 1 || n == 7) {

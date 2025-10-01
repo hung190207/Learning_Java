@@ -3,6 +3,7 @@ package lc.p118_pascal_triangle;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/pascals-triangle/
 public class Solution {
     public List<List<Integer>> generate(int numRows) {
         if (numRows == 0) return new ArrayList<>();
