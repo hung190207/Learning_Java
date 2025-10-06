@@ -2,6 +2,7 @@ package lc.p83_remove_duplicates_from_sorted_list;
 
 import lc.util.ListNode;
 
+// https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) {
