@@ -22,10 +22,10 @@ public class TicTacToe {
                 row = sc.nextInt();
                 System.out.print("Input: col = ");
                 col = sc.nextInt();
-                if (!game.isValidMove(board, row, col)) {
+                if (game.validMove(board, row, col)) {
                     System.out.println("Invalid move!");
                 }
-            } while (!game.isValidMove(board, row, col));
+            } while (game.validMove(board, row, col));
 
             if (turn % 2 == 0) {
                 board[row][col] = CellState.O;
@@ -34,9 +34,6 @@ public class TicTacToe {
             }
             show(board);
             turn--;
-            if (game.isValidMove(board, row, col)) {
-
-            }
             Player winner = game.hasWinner(board);
             if (winner == Player.X) {
                 System.out.println("X won");
@@ -71,9 +68,9 @@ public class TicTacToe {
     }
 
     private static boolean isDraw(CellState[][] board) {
-        for (int i = 0; i < board.length; i++) {
+        for (CellState[] cellStates : board) {
             for (int j = 0; j < board.length; j++) {
-                if (board[i][j] == CellState.__) {
+                if (cellStates[j] == CellState.__) {
                     return false;
                 }
             }
@@ -90,14 +87,11 @@ public class TicTacToe {
         }
     }
 
-    private boolean isValidMove(CellState[][] board, int row, int col) {
+    private boolean validMove(CellState[][] board, int row, int col) {
         if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-            return false;
+            return true;
         }
-        if (board[row][col] != CellState.__) {
-            return false;
-        }
-        return true;
+        return board[row][col] != CellState.__;
     }
 
     private enum Player {
