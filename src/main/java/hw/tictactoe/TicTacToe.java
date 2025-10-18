@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TicTacToe {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TicTacToe game = new TicTacToe();
+
         CellState[][] board = new CellState[3][3];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -22,10 +22,10 @@ public class TicTacToe {
                 row = sc.nextInt();
                 System.out.print("Input: col = ");
                 col = sc.nextInt();
-                if (game.validMove(board, row, col)) {
+                if (validMove(board, row, col)) {
                     System.out.println("Invalid move!");
                 }
-            } while (game.validMove(board, row, col));
+            } while (validMove(board, row, col));
 
             if (turn % 2 == 0) {
                 board[row][col] = CellState.O;
@@ -34,7 +34,7 @@ public class TicTacToe {
             }
             show(board);
             turn--;
-            Player winner = game.hasWinner(board);
+            Player winner = hasWinner(board);
             if (winner == Player.X) {
                 System.out.println("X won");
                 break;
@@ -50,24 +50,30 @@ public class TicTacToe {
         sc.close();
     }
 
-    private Player hasWinner(CellState[][] board) {
+    static Player hasWinner(CellState[][] board) {
         for (int i = 0; i < board.length; i++) {
+            // check horizontal lines
             if (board[i][0] != CellState.__ && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return (board[i][0] == CellState.X) ? Player.X : Player.O;
             }
+
+            // check vertical lines
             if (board[0][i] != CellState.__ && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
                 return (board[0][i] == CellState.X) ? Player.X : Player.O;
             }
         }
+
+        // check diagonals
         if (board[1][1] != CellState.__ &&
                 (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
                 (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
             return board[1][1] == CellState.X ? Player.X : Player.O;
         }
+
         return null;
     }
 
-    private static boolean isDraw(CellState[][] board) {
+    static boolean isDraw(CellState[][] board) {
         for (CellState[] cellStates : board) {
             for (int j = 0; j < board.length; j++) {
                 if (cellStates[j] == CellState.__) {
@@ -78,7 +84,7 @@ public class TicTacToe {
         return true;
     }
 
-    private static void show(CellState[][] board) {
+    static void show(CellState[][] board) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 System.out.print(board[row][col] + " ");
@@ -87,18 +93,15 @@ public class TicTacToe {
         }
     }
 
-    private boolean validMove(CellState[][] board, int row, int col) {
+    static boolean validMove(CellState[][] board, int row, int col) {
         if (row < 0 || row >= 3 || col < 0 || col >= 3) {
             return true;
         }
         return board[row][col] != CellState.__;
     }
 
-    private enum Player {
+    enum Player {
         X, O
     }
 
-    private enum CellState {
-        __, X, O
-    }
 }
