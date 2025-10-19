@@ -62,7 +62,6 @@ public class TicTacToe {
                 return (board[0][i] == CellState.X) ? Player.X : Player.O;
             }
         }
-
         // check diagonals
         if (board[1][1] != CellState.__ &&
                 (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
