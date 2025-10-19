@@ -16,31 +16,31 @@ class TicTacToeTest {
                         {X, X, X},
                         {O, O, __},
                         {__, __, __}
-                }, TicTacToe.Player.X),
+                }, Player.X),
                 Arguments.of(new CellState[][]{
                         {X, O, __},
                         {X, O, __},
                         {X, __, __}
-                }, TicTacToe.Player.X), Arguments.of(new CellState[][]{
+                }, Player.X), Arguments.of(new CellState[][]{
                         {__, X, O},
                         {X, __, O},
                         {X, X, O}
-                }, TicTacToe.Player.O),
+                }, Player.O),
                 Arguments.of(new CellState[][]{
                         {X, X, __},
                         {O, O, O},
                         {X, __, __}
-                }, TicTacToe.Player.O),
+                }, Player.O),
                 Arguments.of(new CellState[][]{
                         {X, O, __},
                         {O, X, O},
                         {X, __, X}
-                }, TicTacToe.Player.X),
+                }, Player.X),
                 Arguments.of(new CellState[][]{
                         {X, X, O},
                         {X, O, O},
                         {O, X, X}
-                }, TicTacToe.Player.O)
+                }, Player.O)
         );
     }
 

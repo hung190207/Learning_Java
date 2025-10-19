@@ -99,8 +99,4 @@ public class TicTacToe {
         return board[row][col] != CellState.__;
     }
 
-    enum Player {
-        X, O
-    }
-
 }
