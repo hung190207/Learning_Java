@@ -36,10 +36,10 @@ public class TicTacToe {
             turn--;
             Player winner = hasWinner(board);
             if (winner == Player.X) {
-                System.out.println("X won");
+                System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
                 break;
             } else if (winner == Player.O) {
-                System.out.println("O won");
+                System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
                 break;
             }
             if (isDraw(board)) {
@@ -63,9 +63,7 @@ public class TicTacToe {
             }
         }
         // check diagonals
-        if (board[1][1] != CellState.__ &&
-                (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-                (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
+        if (board[1][1] != CellState.__ && ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) || (board[0][2] == board[1][1] && board[1][1] == board[2][0]))) {
             return board[1][1] == CellState.X ? Player.X : Player.O;
         }
 
@@ -86,7 +84,13 @@ public class TicTacToe {
     static void show(CellState[][] board) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                System.out.print(board[row][col] + " ");
+                if (board[row][col] == CellState.X) {
+                    System.out.print(ConsoleColor.BLUE.getAnsiCode() + board[row][col] + ConsoleColor.RESET.getAnsiCode() + " ");
+                } else if (board[row][col] == CellState.O) {
+                    System.out.print(ConsoleColor.RED.getAnsiCode() + board[row][col] + ConsoleColor.RESET.getAnsiCode() + " ");
+                } else {
+                    System.out.print(board[row][col] + " ");
+                }
             }
             System.out.println();
         }
