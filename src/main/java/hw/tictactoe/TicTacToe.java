@@ -102,5 +102,4 @@ public class TicTacToe {
         }
         return board[row][col] != CellState.__;
     }
-
 }
