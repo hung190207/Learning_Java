@@ -119,7 +119,7 @@ public class TicTacToe {
                     cell = board[i][j].toString();
                 }
                 if (isCursor) {
-                    System.out.print("[\u001B[32m" + cell + "\u001B[0m]");
+                    System.out.print(ConsoleColor.MAGENTA.getAnsiCode() + "{" + ConsoleColor.RESET.getAnsiCode() + cell + ConsoleColor.MAGENTA.getAnsiCode() + "}" + ConsoleColor.RESET.getAnsiCode());
                 } else {
                     System.out.print(" " + cell + " ");
                 }

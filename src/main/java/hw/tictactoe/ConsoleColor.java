@@ -3,6 +3,7 @@ package hw.tictactoe;
 public enum ConsoleColor {
     RED("\u001B[31m"),
     BLUE("\u001B[34m"),
+    MAGENTA("\u001B[35m"),
     RESET("\u001B[0m");
     private final String ansiCode;
 
