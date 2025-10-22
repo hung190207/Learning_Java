@@ -35,36 +35,30 @@ public class TicTacToe {
                     ccol = (ccol + 1) % 3;
                     break;
                 case 'p':
-                    if (!validMove(board, crow, ccol)) {
-                        if (board[crow][ccol] == CellState.__) {
-                            if (turn % 2 == 0) {
-                                board[crow][ccol] = CellState.O;
-                            } else {
-                                board[crow][ccol] = CellState.X;
-                            }
-                            turn--;
-                            Player winner = hasWinner(board);
-                            if (winner == Player.X) {
-                                clearScreen();
-                                show(board);
-                                System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
-                                return;
-                            } else if (winner == Player.O) {
-                                clearScreen();
-                                show(board);
-                                System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
-                                return;
-                            }
-                            if (isDraw(board)) {
-                                show(board);
-                                clearScreen();
-                                System.out.println("Draw!");
-                                return;
-                            } else {
-                                clearScreen();
-                                showPlaying(board, crow, ccol);
-                                System.out.println("Invalid move");
-                            }
+                    if (board[crow][ccol] == CellState.__) {
+                        if (turn % 2 == 0) {
+                            board[crow][ccol] = CellState.O;
+                        } else {
+                            board[crow][ccol] = CellState.X;
+                        }
+                        turn--;
+                        Player winner = hasWinner(board);
+                        if (winner == Player.X) {
+                            clearScreen();
+                            show(board);
+                            System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
+                            return;
+                        } else if (winner == Player.O) {
+                            clearScreen();
+                            show(board);
+                            System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
+                            return;
+                        }
+                        if (isDraw(board)) {
+                            clearScreen();
+                            show(board);
+                            System.out.println("Draw!");
+                            return;
                         }
                         break;
                     }
@@ -138,13 +132,6 @@ public class TicTacToe {
             }
             System.out.println();
         }
-    }
-
-    static boolean validMove(CellState[][] board, int row, int col) {
-        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-            return true;
-        }
-        return board[row][col] != CellState.__;
     }
 
     static void clearScreen() {
