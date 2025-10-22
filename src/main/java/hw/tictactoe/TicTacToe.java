@@ -1,53 +1,78 @@
 package hw.tictactoe;
 
-import java.util.Scanner;
+import java.io.IOException;
 
 public class TicTacToe {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
+    public static void main(String[] args) throws IOException {
         CellState[][] board = new CellState[3][3];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 board[i][j] = CellState.__;
             }
         }
-        show(board);
+        int crow = 0;
+        int ccol = 0;
         int turn = 9;
         while (turn != 0) {
-            int row;
-            int col;
-            do {
-                System.out.print("Input: row = ");
-                row = sc.nextInt();
-                System.out.print("Input: col = ");
-                col = sc.nextInt();
-                if (validMove(board, row, col)) {
-                    System.out.println("Invalid move!");
-                }
-            } while (validMove(board, row, col));
-
-            if (turn % 2 == 0) {
-                board[row][col] = CellState.O;
-            } else {
-                board[row][col] = CellState.X;
-            }
-            show(board);
-            turn--;
-            Player winner = hasWinner(board);
-            if (winner == Player.X) {
-                System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
-                break;
-            } else if (winner == Player.O) {
-                System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
-                break;
-            }
-            if (isDraw(board)) {
-                System.out.println("Draw!");
-                break;
+            clearScreen();
+            showPlaying(board, crow, ccol);
+            System.out.print("Use WASD to move, Press p to place");
+            System.out.println();
+            System.out.println("Current turn: " + (turn % 2 == 1 ? "X" : "O"));
+            char key = (char) System.in.read();
+            key = Character.toLowerCase(key);
+            switch (key) {
+                case 'w':
+                    crow = (crow - 1 + 3) % 3;
+                    break;
+                case 's':
+                    crow = (crow + 1) % 3;
+                    break;
+                case 'a':
+                    ccol = (ccol - 1 + 3) % 3;
+                    break;
+                case 'd':
+                    ccol = (ccol + 1) % 3;
+                    break;
+                case 'p':
+                    if (board[crow][ccol] == CellState.__) {
+                        if (turn % 2 == 0) {
+                            board[crow][ccol] = CellState.O;
+                        } else {
+                            board[crow][ccol] = CellState.X;
+                        }
+                        turn--;
+                        Player winner = hasWinner(board);
+                        if (winner == Player.X) {
+                            clearScreen();
+                            show(board);
+                            System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
+                            return;
+                        } else if (winner == Player.O) {
+                            clearScreen();
+                            show(board);
+                            System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
+                            return;
+                        }
+                        if (isDraw(board)) {
+                            show(board);
+                            clearScreen();
+                            System.out.println("Draw!");
+                            return;
+                        } else {
+                            clearScreen();
+                            showPlaying(board, crow, ccol);
+                            System.out.println("Invalid move");
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                            }
+                        }
+                        break;
+                    }
             }
         }
-        sc.close();
     }
 
     static Player hasWinner(CellState[][] board) {
@@ -81,6 +106,28 @@ public class TicTacToe {
         return true;
     }
 
+    static void showPlaying(CellState[][] board, int crow, int ccol) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                boolean isCursor = (i == crow && j == ccol);
+                String cell;
+                if (board[i][j] == CellState.X) {
+                    cell = ConsoleColor.BLUE.getAnsiCode() + board[i][j] + ConsoleColor.RESET.getAnsiCode();
+                } else if (board[i][j] == CellState.O) {
+                    cell = ConsoleColor.RED.getAnsiCode() + board[i][j] + ConsoleColor.RESET.getAnsiCode();
+                } else {
+                    cell = board[i][j].toString();
+                }
+                if (isCursor) {
+                    System.out.print("[\u001B[32m" + cell + "\u001B[0m]");
+                } else {
+                    System.out.print(" " + cell + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
     static void show(CellState[][] board) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -101,5 +148,10 @@ public class TicTacToe {
             return true;
         }
         return board[row][col] != CellState.__;
+    }
+
+    static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
