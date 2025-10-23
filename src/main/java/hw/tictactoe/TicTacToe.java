@@ -14,7 +14,7 @@ public class TicTacToe {
         int ccol = 0;
         int turn = 9;
         while (turn != 0) {
-            clearScreen();
+            clearConsole();
             showPlaying(board, crow, ccol);
             System.out.print("Use WASD to move, Press p to place");
             System.out.println();
@@ -44,19 +44,19 @@ public class TicTacToe {
                         turn--;
                         Player winner = hasWinner(board);
                         if (winner == Player.X) {
-                            clearScreen();
-                            show(board);
+                            clearConsole();
+                            showRes(board);
                             System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
                             return;
                         } else if (winner == Player.O) {
-                            clearScreen();
-                            show(board);
+                            clearConsole();
+                            showRes(board);
                             System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
                             return;
                         }
                         if (isDraw(board)) {
-                            clearScreen();
-                            show(board);
+                            clearConsole();
+                            showRes(board);
                             System.out.println("Draw!");
                             return;
                         }
@@ -98,28 +98,36 @@ public class TicTacToe {
     }
 
     static void showPlaying(CellState[][] board, int crow, int ccol) {
+        System.out.println("  0   1    2");
         for (int i = 0; i < board.length; i++) {
+            System.out.println(i + " ");
             for (int j = 0; j < board[0].length; j++) {
                 boolean isCursor = (i == crow && j == ccol);
                 String cell;
                 if (board[i][j] == CellState.X) {
-                    cell = ConsoleColor.BLUE.getAnsiCode() + board[i][j] + ConsoleColor.RESET.getAnsiCode();
+                    cell = ConsoleColor.BLUE.getAnsiCode() + " X " + ConsoleColor.RESET.getAnsiCode();
                 } else if (board[i][j] == CellState.O) {
-                    cell = ConsoleColor.RED.getAnsiCode() + board[i][j] + ConsoleColor.RESET.getAnsiCode();
+                    cell = ConsoleColor.RED.getAnsiCode() + " O " + ConsoleColor.RESET.getAnsiCode();
                 } else {
-                    cell = board[i][j].toString();
+                    cell = "  ";
                 }
                 if (isCursor) {
-                    System.out.print(ConsoleColor.MAGENTA.getAnsiCode() + "{" + ConsoleColor.RESET.getAnsiCode() + cell + ConsoleColor.MAGENTA.getAnsiCode() + "}" + ConsoleColor.RESET.getAnsiCode());
+                    System.out.print(ConsoleColor.MAGENTA.getAnsiCode() + "[" + ConsoleColor.RESET.getAnsiCode() + cell + ConsoleColor.MAGENTA.getAnsiCode() + "]" + ConsoleColor.RESET.getAnsiCode());
                 } else {
                     System.out.print(" " + cell + " ");
                 }
+                if (j < board[0].length - 1) {
+                    System.out.print("|");
+                }
             }
             System.out.println();
+            if (i < board.length - 1) {
+                System.out.println(" " + "-".repeat(13));
+            }
         }
     }
 
-    static void show(CellState[][] board) {
+    static void showRes(CellState[][] board) {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 if (board[row][col] == CellState.X) {
@@ -134,8 +142,8 @@ public class TicTacToe {
         }
     }
 
-    static void clearScreen() {
-        System.out.print("\033[H\033[2J");
+    public static void clearConsole() {
+        System.out.print("\n\n\n\n\n");
         System.out.flush();
     }
 }
