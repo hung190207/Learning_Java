@@ -11,7 +11,7 @@ public class TicTacToe {
     static BotDifficulty botDifficulty = BotDifficulty.NONE;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("Welcome to TicTacToe!");
+        System.out.println(ConsoleColor.BCYAN.getAnsiCode() + "Welcome to TicTacToe!" + ConsoleColor.RESET.getAnsiCode());
         System.out.println("Choose game mode: ");
         System.out.println("1 for Player vs Player");
         System.out.println("2 for Player vs Bot");
@@ -20,7 +20,7 @@ public class TicTacToe {
         clearInput();
         if (mode == '2') {
             isAgainstBot = true;
-            System.out.println("Choose game mode: ");
+            System.out.println(ConsoleColor.BCYAN.getAnsiCode() + "Choose game mode: " + ConsoleColor.RESET.getAnsiCode());
             System.out.println("1 for New to game");
             System.out.println("2 for Hardmode");
             System.out.println("Your choose: ");
@@ -75,7 +75,7 @@ public class TicTacToe {
                     if (isDraw(board)) {
                         clearConsole();
                         showRes(board);
-                        System.out.println("DRAW!");
+                        System.out.println(ConsoleColor.MAGENTA.getAnsiCode() + "Draw!!!" + ConsoleColor.RESET.getAnsiCode());
                         return;
                     }
                 }
@@ -105,22 +105,22 @@ public class TicTacToe {
                         }
                         turn--;
 
-                        Player winner = TicTacToeFuncs.hasWinner(board);
+                        Player winner = hasWinner(board);
                         if (winner == Player.X) {
                             clearConsole();
-                            TicTacToeFuncs.showRes(board);
+                            showRes(board);
                             System.out.println("\u001B[33m The winner is: X!!\u001B[0m");
                             return;
                         } else if (winner == Player.O) {
                             clearConsole();
-                            TicTacToeFuncs.showRes(board);
+                            showRes(board);
                             System.out.println("\u001B[33m The winner is: O!!\u001B[0m");
                             return;
                         }
-                        if (TicTacToeFuncs.isDraw(board)) {
+                        if (isDraw(board)) {
                             clearConsole();
-                            TicTacToeFuncs.showRes(board);
-                            System.out.println("Draw!");
+                            showRes(board);
+                            System.out.println(ConsoleColor.MAGENTA.getAnsiCode() + "Draw!!" + ConsoleColor.RESET.getAnsiCode());
                             return;
                         }
                         break;

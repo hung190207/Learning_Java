@@ -11,6 +11,17 @@ plugins {
     id 'application'
 }
 
+
+application {
+    mainClass = 'hw.tictactoe.TicTacToe'
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = application.mainClass
+    }
+}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -38,7 +49,3 @@ java {
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'org.example.App'
-}

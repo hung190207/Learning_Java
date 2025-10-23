@@ -1,5 +1,7 @@
 package hw.tictactoe;
 
+import java.io.IOException;
+
 public class TicTacToeFuncs {
     public static Player hasWinner(CellState[][] board) {
         for (int i = 0; i < board.length; i++) {
@@ -78,7 +80,16 @@ public class TicTacToeFuncs {
     }
 
     public static void clearConsole() {
-        System.out.print("\n".repeat(50));
-        System.out.flush();
+        try {
+            boolean isUnix = System.getProperty("os.name").contains("Linux") || System.getProperty("os.name").contains("Mac");
+            if (isUnix) {
+                ProcessBuilder p = new ProcessBuilder("clear");
+                p.inheritIO().start().waitFor();
+            } else {
+                System.out.println("Clear command not supported on this OS.");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
