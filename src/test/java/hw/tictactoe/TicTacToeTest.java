@@ -47,7 +47,7 @@ class TicTacToeTest {
     @ParameterizedTest
     @MethodSource("test")
     void hasWinner(CellState[][] board, Object expected) {
-        Object actual = TicTacToe.hasWinner(board);
+        Object actual = TicTacToeFuncs.hasWinner(board);
         assertEquals(expected, actual);
     }
 
@@ -69,7 +69,7 @@ class TicTacToeTest {
     @ParameterizedTest
     @MethodSource("test1")
     void isDraw(CellState[][] board, boolean expected) {
-        boolean actual = TicTacToe.isDraw(board);
+        boolean actual = TicTacToeFuncs.isDraw(board);
         assertEquals(expected, actual);
     }
 
