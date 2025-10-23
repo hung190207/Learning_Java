@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static hw.tictactoe.CellState.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TicTacToeTest {
@@ -73,4 +74,25 @@ class TicTacToeTest {
         assertEquals(expected, actual);
     }
 
+    static Stream<Arguments> test2() {
+        return Stream.of(
+                Arguments.of(new CellState[][]{
+                        {__, X, __},
+                        {__, X, O},
+                        {__, __, __}
+                }, X, new int[]{2, 1}),
+                Arguments.of(new CellState[][]{
+                        {O, O, __},
+                        {X, __, __},
+                        {__, __, __}
+                }, O, new int[]{0, 2})
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("test2")
+    void findWinMove(CellState[][] board, CellState player, int[] expected) {
+        int[] actual = Bot.findWinMove(board, player);
+        assertArrayEquals(expected, actual);
+    }
 }
