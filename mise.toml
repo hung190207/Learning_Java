@@ -1,2 +1,3 @@
 [tools]
-java = "24"
+gradle = "latest"
+java = "25"
