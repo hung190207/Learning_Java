@@ -12,7 +12,7 @@ public class Solution {
                 ans.add("Fizz");
             } else if (i % 5 == 0 && i % 3 != 0) {
                 ans.add("Buzz");
-            } else if (i % 3 == 0 && i % 5 == 0) {
+            } else if (i % 3 == 0) {
                 ans.add("FizzBuzz");
             } else {
                 ans.add(String.valueOf(i));
