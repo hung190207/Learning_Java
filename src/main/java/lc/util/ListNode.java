@@ -4,40 +4,50 @@ public class ListNode {
     public int val;
     public ListNode next;
 
-    public ListNode(int val) {
+    // Fixed: was assigning this.next to itself instead of the parameter
+    public ListNode(int val, ListNode next) {
         this.val = val;
-        this.next = next;
+        this.next = next;  // Changed from this.next = this.next
     }
+
+    // Add default constructor for convenience
+    public ListNode(int val) {
+        this(val, null);
+    }
+
     // Convert array into ListNode.
     public static ListNode fromArray(int[] arr) {
-        if (arr == null || arr.length == 0)
-            return null;
+        if (arr == null || arr.length == 0) return null;
+
         ListNode head = new ListNode(arr[0]);
         ListNode cur = head;
+
         for (int i = 1; i < arr.length; i++) {
             cur.next = new ListNode(arr[i]);
             cur = cur.next;
         }
         return head;
     }
+
     // Convert Int array into ListNode
     public static ListNode fromIntegerArray(Integer[] array) {
         if (array == null || array.length == 0) {
             return null;
         }
 
-        ListNode head = new ListNode(array[0]);
+        ListNode head = new ListNode(array[0], null);  // Fixed: current doesn't exist yet
         ListNode current = head;
 
         for (int i = 1; i < array.length; i++) {
             if (array[i] != null) {
-                current.next = new ListNode(array[i]);
+                current.next = new ListNode(array[i], null);  // Fixed: just pass null
                 current = current.next;
             }
         }
 
         return head;
     }
+
     // Convert ListNode to Array
     public int[] toArray() {
         java.util.List<Integer> list = new java.util.ArrayList<>();
@@ -51,7 +61,13 @@ public class ListNode {
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    /*public void ListNodeArray(int[] arr, int val){
-        this.val = val;
-    }*/
+    //    Added compare result function.
+    public static boolean areEqual(ListNode expected, ListNode actual) {
+        while (expected != null && actual != null) {
+            if (expected.val != actual.val) return false;
+            expected = expected.next;
+            actual = actual.next;
+        }
+        return expected == null && actual == null;
+    }
 }
