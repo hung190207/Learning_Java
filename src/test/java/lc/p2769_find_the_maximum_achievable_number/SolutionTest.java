@@ -17,7 +17,7 @@ class SolutionTest {
     }
     @ParameterizedTest
     @MethodSource("test")
-    void maxAchivalbe(int num,int t, int expected) {
+    void maxAchievalbe(int num,int t, int expected) {
         int actual = new Solution().theMaximumAchievableX(num,t);
         assertEquals(expected, actual);
     }
