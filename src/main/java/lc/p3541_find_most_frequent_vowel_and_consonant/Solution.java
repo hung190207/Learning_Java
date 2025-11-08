@@ -8,7 +8,7 @@ public class Solution {
         for (char c : s.toCharArray()) {
             int i = c - 'a';
             freq[i]++;
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o') {
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
                 maxVowel = Math.max(maxVowel, freq[i]);
             } else {
                 maxConsonant = Math.max(maxConsonant, freq[i]);
