@@ -6,8 +6,8 @@ public class Solution {
         int res = 0;
         for (int[] account : accounts) {
             int sum = 0;
-            for (int j = 0; j < account.length; j++) {
-                sum += account[j];
+            for (int i : account) {
+                sum += i;
             }
             if (sum > res) {
                 res = sum;
