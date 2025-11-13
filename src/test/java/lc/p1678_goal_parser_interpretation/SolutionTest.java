@@ -1,4 +1,4 @@
-package lc.p1929.concatenation_of_array;
+package lc.p1678_goal_parser_interpretation;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
     public static Stream<Arguments> test() {
         return Stream.of(
-                Arguments.of(new int[]{1, 2, 1}, new int[]{1, 2, 1, 1, 2, 1})
+                Arguments.of("G()(al)", "Goal")
         );
     }
 
     @ParameterizedTest
     @MethodSource("test")
-    void concatenation(int[] nums, int[] expected) {
-        int[] actual = new Solution().getConcatenation(nums);
-        assertArrayEquals(expected, actual);
+    void testing(String command, String expected) {
+        String actual = new Solution().interpret(command);
+        assertEquals(expected, actual);
     }
 }

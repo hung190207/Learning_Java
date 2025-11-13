@@ -1,4 +1,4 @@
-package lc.p1929.concatenation_of_array;
+package lc.p1929_concatenation_of_array;
 
 // https://leetcode.com/problems/concatenation-of-array/description/
 public class Solution {
