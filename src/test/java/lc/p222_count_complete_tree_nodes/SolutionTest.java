@@ -1,4 +1,4 @@
-package lc.p222.count_complete_tree_nodes;
+package lc.p222_count_complete_tree_nodes;
 
 import lc.util.TreeNode;
 import org.junit.jupiter.params.ParameterizedTest;
