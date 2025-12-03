@@ -20,6 +20,4 @@ class SolutionTest {
     void main(int n, int expected) {
         assertEquals(expected, new Solution().numberOfMatches(n));
     }
-
-
 }
