@@ -6,7 +6,7 @@ public class Solution {
         String[] words = s.split(" ");
         String[] res = new String[words.length];
         for (String word : words) {
-            int idx = Character.getNumericValue(word.charAt(word.length() - 1)) - '0';
+            int idx = Character.getNumericValue(word.charAt(word.length() - 1)) - 1;
             res[idx] = word.substring(0, word.length() - 1);
         }
         return String.join(" ", res);
