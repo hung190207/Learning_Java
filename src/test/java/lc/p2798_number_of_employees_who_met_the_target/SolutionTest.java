@@ -11,14 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
     public static Stream<Arguments> test() {
         return Stream.of(
-                Arguments.of(new int[]{0, 1, 2, 3, 4}, 2, 3)
+                Arguments.of(new int[]{5, 1, 4, 2, 2}, 6, 0)
         );
     }
 
     @ParameterizedTest
     @MethodSource("test")
     void testing(int[] hours, int target, int expected) {
-        int actual = new Solution().numberOfEmployeesWhoMetTarget(hours, target);
-        assertEquals(expected, actual);
+        assertEquals(expected, new Solution().numberOfEmployeesWhoMetTarget(hours, target));
     }
 }
