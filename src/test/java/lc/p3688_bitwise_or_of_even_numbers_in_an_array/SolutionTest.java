@@ -17,8 +17,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("test")
-    void main() {
-
+    void main(int[] nums, int expected) {
+        assertEquals(expected, new Solution().evenNumberBitwiseORs(nums));
     }
-
 }
