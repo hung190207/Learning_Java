@@ -3,6 +3,7 @@ package lc.p728_self_dividing_numbers;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/self-dividing-numbers/description/
 public class Solution {
     public List<Integer> selfDividingNumbers(int left, int right) {
         List<Integer> res = new ArrayList<>();

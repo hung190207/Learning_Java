@@ -1,5 +1,6 @@
 package lc.p1952_three_divisors;
 
+// https://leetcode.com/problems/three-divisors/
 public class Solution {
     public boolean isThree(int n) {
         int c = 0;
